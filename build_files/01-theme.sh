@@ -2,13 +2,6 @@
 
 set -xeuo pipefail
 
-# testing bootc-git
-dnf -y copr enable hecknt/bootc-git
-dnf -y copr disable zirconium/packages
-echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:hecknt:bootc-git.repo
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:hecknt:bootc-git upgrade \
-  bootc
-
 install -d /usr/share/zirconium/
 
 dnf -y copr enable zirconium/packages
