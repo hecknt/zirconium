@@ -41,7 +41,6 @@ jobs:
           additional-args: --use-librepo=True
 
       - name: Upload Artifact
-        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: ${{ github.event.repository.name }}-${{ matrix.platform }}
