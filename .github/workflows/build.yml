@@ -94,14 +94,6 @@ jobs:
         uses: sigstore/cosign-installer@v4.0.0
         if: github.event_name != 'pull_request'
 
-      - name: Sign Image
-        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        env:
-          REMOTE_IMAGE_DIGEST: ${{ steps.push.outputs.remote_image_digest }}
-          COSIGN_EXPERIMENTAL: false
-          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
-        run: cosign sign -y --new-bundle-format=false --use-signing-config=false --key env://COSIGN_PRIVATE_KEY "${IMAGE_REGISTRY}/${IMAGE_NAME}@${REMOTE_IMAGE_DIGEST}"
-
       - name: Create Job Outputs
         if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         env:
@@ -257,6 +249,4 @@ jobs:
             while IFS= read -r TAG; do
               podman manifest push --all=false --digestfile=/tmp/digestfile "${TARGET_MANIFEST}" "${TARGET_MANIFEST}:${TAG}"
             done <<< "${TAGS}"
-
-            cosign sign -y --new-bundle-format=false --use-signing-config=false --key env://COSIGN_PRIVATE_KEY "${TARGET_MANIFEST}@$(< /tmp/digestfile)"
           done
