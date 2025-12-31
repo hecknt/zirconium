@@ -2,6 +2,11 @@
 
 set -xeuo pipefail
 
+systemctl enable systemd-timesyncd
+systemctl enable systemd-resolved.service
+
+dnf -y install 'dnf5-command(config-manager)'
+
 # testing bootc-git
 dnf -y copr enable hecknt/bootc-git
 dnf -y copr disable hecknt/bootc-git
@@ -9,10 +14,6 @@ echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:heck
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:hecknt:bootc-git upgrade \
   bootc
 
-systemctl enable systemd-timesyncd
-systemctl enable systemd-resolved.service
-
-dnf -y install 'dnf5-command(config-manager)'
 
 dnf config-manager addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 dnf config-manager setopt tailscale-stable.enabled=0
