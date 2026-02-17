@@ -21,6 +21,7 @@ Before=systemd-user-sessions.service
 
 [Service]
 Type=oneshot
+ExecStart=bash -c 'touch /etc/gshadow && chmod 600 /etc/gshadow'
 ExecStart=bash -c 'mv /etc/gshadow "/etc/gshadow-pre-zirc-rechunker-fix.$(date -u +%%Y%%m%%d%%H%%M%%S)"'
 ExecStart=systemd-sysusers
 ExecStart=rechunker-group-fix
