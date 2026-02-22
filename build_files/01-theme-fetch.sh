@@ -52,6 +52,7 @@ dnf -y install \
     hyfetch \
     input-remapper \
     just \
+    kf6-kimageformats \
     khal \
     nautilus \
     nautilus-python \
