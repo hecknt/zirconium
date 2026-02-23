@@ -23,6 +23,12 @@
             "format": "{pretty-name}"
         },
         {
+            "type": "command",
+            "key": " ",
+            "text": ". /etc/os-release; echo Based on $BASE_OS_NAME",
+            "shell": "/bin/bash"
+        },
+        {
             "type": "kernel",
             "key": " ",
             "format": "{1} {2}"

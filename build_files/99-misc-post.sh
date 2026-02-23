@@ -6,6 +6,9 @@ HOME_URL="https://github.com/zirconium-dev/zirconium"
 echo "zirconium" | tee "/etc/hostname"
 # OS Release File (changed in order with upstream)
 # TODO: change ANSI_COLOR
+bash -c '. /etc/os-release
+echo "BASE_OS_NAME=\"$NAME $VERSION_ID\"" >> /etc/os-release'
+
 sed -i -f - /usr/lib/os-release <<EOF
 s|^NAME=.*|NAME=\"Zirconium\"|
 s|^PRETTY_NAME=.*|PRETTY_NAME=\"Zirconium\"|
