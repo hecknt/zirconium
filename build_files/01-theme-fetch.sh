@@ -22,6 +22,12 @@ dnf -y copr disable avengemedia/danklinux
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:avengemedia:danklinux install quickshell-git
 
 dnf -y copr enable avengemedia/dms-git
+
+# FIXME: remove when foot is updated to 1.26.0, the commit just after this one broke foot's configuration for 1.25.0
+# See this commit here: https://github.com/AvengeMedia/DankMaterialShell/commit/754bf8fa3cf98e96e62e6493e8900716737465ed
+dnf versionlock add dms-2:0.0.git.3378.78402945-1.fc44
+dnf versionlock add dms-cli-2:0.0.git.3378.78402945-1.fc44
+
 dnf -y copr disable avengemedia/dms-git
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:avengemedia:dms-git --enablerepo copr:copr.fedorainfracloud.org:avengemedia:danklinux install --setopt=install_weak_deps=False \
     dms \
