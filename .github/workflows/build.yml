@@ -36,13 +36,6 @@ jobs:
         #edition: ["", "nvidia"]
     runs-on: 'ubuntu-24.04'
     steps:
-      - name: Mount BTRFS for podman storage
-        uses: ublue-os/container-storage-action@911baca08baf30c8654933e9e9723cb399892140
-        continue-on-error: true
-        with:
-          target-dir: /var/lib/containers
-          mount-opts: compress-force=zstd:2
-
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
