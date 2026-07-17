@@ -35,7 +35,7 @@ ln -s fedora-release /usr/lib/system-release
 
     tee /usr/lib/os-release <<EOF
 NAME="${IMAGE_NAME^}"
-ID="$ID"
+ID="${IMAGE_NAME}"
 ID_LIKE="$ID"
 PRETTY_NAME="${IMAGE_NAME^}"
 FANCY_NAME="\033[0;38:2:252:186:3;1;49m⸭\033[0;38:2:252:186:3;49m ${IMAGE_NAME^} \033[0m"
@@ -44,13 +44,13 @@ VERSION_ID="$VERSION_ID"
 VERSION_CODENAME="Pibble"
 ANSI_COLOR="38:2:252:186:3;1;49"
 ANSI_COLOR_REVERSE="48;2;252;186;3;1;30"
-DEFAULT_HOSTNAME="${IMAGE_NAME}-????-????"
+LOGO="zirconium"
 HOME_URL="${HOME_URL}"
 BUG_REPORT_URL="${HOME_URL}/issues"
 SUPPORT_URL=\"${HOME_URL}/issues
-CPE_NAME="cpe:/o:${IMAGE_NAME}-dev:${IMAGE_NAME}"
+CPE_NAME="cpe:/o:zirconium-dev:${IMAGE_NAME}"
 DOCUMENTATION_URL="${HOME_URL}"
-DEFAULT_HOSTNAME="${IMAGE_NAME}"
+DEFAULT_HOSTNAME="${IMAGE_NAME}-????-????"
 EOF
 
     tee /usr/lib/issue <<EOF
